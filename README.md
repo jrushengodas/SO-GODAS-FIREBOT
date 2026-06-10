@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jrushengodas/YTM-GODAS-STREAMERBOT/main/assets/logo.jpg" width="400">
+  <img src="https://raw.githubusercontent.com/jrushengodas/SO-GODAS-STREAMERBOT-/main/assets/logo.jpg" width="400">
 </p>
 
 <h1 align="center">Godas Twitch Shoutout</h1>
 
 <p align="center">
-  Advanced Twitch Shoutout System for Firebot
+  Advanced Twitch Shoutout System for Firebot V5
   <br>
   Official Twitch Shoutouts + Announcements + Randomized Messages
 </p>
@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/status-stable-green">
   <img src="https://img.shields.io/badge/version-1.0-blue">
-  <img src="https://img.shields.io/badge/Firebot-compatible-purple">
+  <img src="https://img.shields.io/badge/Firebot_V5-compatible-purple">
   <img src="https://img.shields.io/badge/Twitch_API-supported-red">
   <img src="https://img.shields.io/badge/Open_Source-yes-orange">
 </p>
@@ -34,12 +34,14 @@
 ✅ Twitch Announcement
 ✅ Randomized messages
 ✅ Twitch Helix API integration
-✅ Auto user lookup
-✅ Auto category lookup
-✅ Auto stream title lookup
-✅ Firebot compatible
+✅ Automatic user lookup
+✅ Automatic category lookup
+✅ Automatic stream title lookup
+✅ Scan Whole Message support
+✅ Firebot V5 compatible
 ✅ Streamer-only setup supported
 ✅ Streamer + Bot setup supported
+✅ Setup Wizard included
 ✅ Easy configuration
 ```
 
@@ -71,9 +73,9 @@ The system automatically :
 ```text
 Moderator
    ↓
-Firebot
+Firebot V5
    ↓
-Godas Shoutout
+Godas SO
    ↓
 Twitch Helix API
    ↓
@@ -89,10 +91,11 @@ Announcement + Official Shoutout
 !so @username
 ```
 
-Example :
+Examples :
 
 ```text
 !so jungpoo97
+!so @jungpoo97
 ```
 
 ---
@@ -118,7 +121,7 @@ Messages are randomized automatically.
 # Compatibility
 
 ```text
-✅ Firebot
+✅ Firebot V5
 ✅ Twitch Helix API
 ✅ Twitch Announcements
 ✅ Official Twitch Shoutouts
@@ -131,61 +134,110 @@ Messages are randomized automatically.
 # Requirements
 
 ```text
-- Firebot
+- Firebot V5
+- Scripts Enabled
 - Twitch Account
 - Twitch API Client ID
 - Twitch Access Token
-- Newtonsoft.Json
 ```
 
 ---
 
 # Installation
 
-## 1. Create Command
+## 1. Enable Scripts
 
-Create a Twitch command :
+Go to :
+
+```text
+Settings
+→ Scripts
+→ Enable Scripts
+```
+
+---
+
+## 2. Import Files
+
+Copy :
+
+```text
+godas_so_setup.js
+godas_so.js
+```
+
+to your Firebot scripts folder.
+
+---
+
+## 3. Run Setup
+
+Launch :
+
+```text
+GODAS SO V1.0 - Setup
+```
+
+Fill in :
+
+```text
+Client ID
+Access Token
+Broadcaster ID
+Moderator ID
+```
+
+Then execute the setup.
+
+---
+
+## 4. Create Command
+
+Create a command :
 
 ```text
 !so
 ```
 
-Add argument :
+Enable :
 
 ```text
-input0
-Auto Type
-Required = Yes
+Scan Whole Message
 ```
 
 ---
 
-## 2. Add Arguments
+## 5. Access Control
 
-Create the following arguments :
+Recommended permission :
 
 ```text
-godas_so_client_id
-godas_so_access_token
-godas_so_broadcaster_id
-godas_so_moderator_id
+Moderator
 ```
 
-Recommended order :
+or
 
 ```text
-Set Argument godas_so_client_id
-Set Argument godas_so_access_token
-Set Argument godas_so_broadcaster_id
-Set Argument godas_so_moderator_id
-Execute Code
+Broadcaster + Moderator
 ```
 
 ---
 
-## 3. Import Script
+## 6. Add Effect
 
-Import the included C# code into your Firebot action.
+Add :
+
+```text
+Run Script
+```
+
+Select :
+
+```text
+godas_so.js
+```
+
+No argument mapping is required.
 
 ---
 
@@ -213,13 +265,6 @@ Client ID
 Access Token
 ```
 
-Configure :
-
-```text
-godas_so_client_id
-godas_so_access_token
-```
-
 ---
 
 # Twitch IDs
@@ -244,7 +289,7 @@ Response :
 }
 ```
 
-The value returned is the Twitch ID.
+The returned value is the Twitch ID.
 
 ---
 
@@ -253,8 +298,8 @@ The value returned is the Twitch ID.
 If you use your streamer account only :
 
 ```text
-godas_so_broadcaster_id = Streamer ID
-godas_so_moderator_id = Streamer ID
+Broadcaster ID = Streamer ID
+Moderator ID = Streamer ID
 ```
 
 Example :
@@ -273,8 +318,8 @@ Both values are identical.
 If you use a dedicated bot account :
 
 ```text
-godas_so_broadcaster_id = Streamer ID
-godas_so_moderator_id = Bot ID
+Broadcaster ID = Streamer ID
+Moderator ID = Bot ID
 ```
 
 Important :
@@ -288,9 +333,6 @@ Example :
 ```text
 Streamer : je_rush_en_godas
 Bot      : je_bot_en_godas
-
-godas_so_broadcaster_id = Streamer ID
-godas_so_moderator_id = Bot ID
 ```
 
 ---
@@ -307,13 +349,15 @@ Twitch only allows official shoutouts when :
 ✅ Correct moderator account
 ```
 
+---
+
 # Technologies
 
 ```text
-- Firebot
-- C#
+- Firebot V5
+- JavaScript
+- Node.js
 - Twitch Helix API
-- Newtonsoft.Json
 ```
 
 ---
