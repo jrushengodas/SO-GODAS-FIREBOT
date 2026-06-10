@@ -1,215 +1,335 @@
-# Godas Twitch Shoutout pour Streamer.bot
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jrushengodas/YTM-GODAS-STREAMERBOT/main/assets/logo.jpg" width="400">
+</p>
 
-Commande `!so` pour Streamer.bot avec :
+<h1 align="center">Godas Twitch Shoutout</h1>
 
-- annonce Twitch personnalisée ;
-- messages aléatoires ;
-- récupération des infos Twitch via API Helix ;
-- vrai Shoutout officiel Twitch ;
-- configuration par arguments Streamer.bot ;
-- compatible compte streamer seul ou compte bot modérateur.
+<p align="center">
+  Advanced Twitch Shoutout System for Firebot
+  <br>
+  Official Twitch Shoutouts + Announcements + Randomized Messages
+</p>
 
-## Exemple
+<p align="center">
+  <a href="https://github.com/jrushengodas/SO-GODAS-STREAMERBOT-/releases/latest/download/godas-twitch-shoutout.zip">
+    <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-COMPLETE_PACKAGE-00ff99?style=for-the-badge&logo=github&logoColor=white">
+  </a>
+</p>
 
-```txt
+<p align="center">
+  <img src="https://img.shields.io/badge/status-stable-green">
+  <img src="https://img.shields.io/badge/version-1.0-blue">
+  <img src="https://img.shields.io/badge/Firebot-compatible-purple">
+  <img src="https://img.shields.io/badge/Twitch_API-supported-red">
+  <img src="https://img.shields.io/badge/Open_Source-yes-orange">
+</p>
+
+---
+
+# Features
+
+```text
+✅ !so command
+✅ Official Twitch Shoutout
+✅ Twitch Announcement
+✅ Randomized messages
+✅ Twitch Helix API integration
+✅ Auto user lookup
+✅ Auto category lookup
+✅ Auto stream title lookup
+✅ Firebot compatible
+✅ Streamer-only setup supported
+✅ Streamer + Bot setup supported
+✅ Easy configuration
+```
+
+---
+
+# What It Does
+
+When a moderator executes :
+
+```text
+!so username
+```
+
+The system automatically :
+
+```text
+✅ Retrieves Twitch user information
+✅ Retrieves stream category
+✅ Retrieves channel title
+✅ Sends a Twitch Announcement
+✅ Attempts an Official Twitch Shoutout
+✅ Uses randomized custom messages
+```
+
+---
+
+# Architecture
+
+```text
+Moderator
+   ↓
+Firebot
+   ↓
+Godas Shoutout
+   ↓
+Twitch Helix API
+   ↓
+Announcement + Official Shoutout
+```
+
+---
+
+# Commands
+
+```text
+!so username
+!so @username
+```
+
+Example :
+
+```text
 !so jungpoo97
-!so @jungpoo97
 ```
 
-Le script envoie une annonce Twitch avec un message aléatoire, puis tente aussi le shoutout officiel Twitch.
+---
 
-## Installation
+# Message Examples
 
-Dans Streamer.bot :
+```text
+The kingdom strongly recommends a visit to Benjyyi.
 
-```txt
-Actions → Add → Name : Godas Shoutout
+Godas scouts have spotted Benjyyi streaming again.
+
+Transmission intercepted. Benjyyi was recently seen playing Sea of Thieves.
+
+Investigation opened. Evidence points toward Benjyyi.
+
+The council is still debating whether Benjyyi is a genius or a public danger.
 ```
 
-Ajoutez un trigger de commande Twitch :
+Messages are randomized automatically.
 
-```txt
+---
+
+# Compatibility
+
+```text
+✅ Firebot
+✅ Twitch Helix API
+✅ Twitch Announcements
+✅ Official Twitch Shoutouts
+✅ Streamer Account Only
+✅ Streamer + Bot Setup
+```
+
+---
+
+# Requirements
+
+```text
+- Firebot
+- Twitch Account
+- Twitch API Client ID
+- Twitch Access Token
+- Newtonsoft.Json
+```
+
+---
+
+# Installation
+
+## 1. Create Command
+
+Create a Twitch command :
+
+```text
 !so
 ```
 
-Argument :
+Add argument :
 
-```txt
+```text
 input0
 Auto Type
-Required : Yes
+Required = Yes
 ```
 
-## Arguments à créer avant Execute Code
+---
 
-Ajoutez ces sub-actions avant `Execute Code` :
+## 2. Add Arguments
 
-```txt
-Set Argument : godas_so_client_id
-Set Argument : godas_so_access_token
-Set Argument : godas_so_broadcaster_id
-Set Argument : godas_so_moderator_id
-```
+Create the following arguments :
 
-Ordre recommandé :
-
-```txt
-1. Set Argument godas_so_client_id
-2. Set Argument godas_so_access_token
-3. Set Argument godas_so_broadcaster_id
-4. Set Argument godas_so_moderator_id
-5. Execute Code
-```
-
-Collez ensuite le contenu de :
-
-```txt
-src/GodasShoutout.cs
-```
-
-## Récupérer le Client ID et l'Access Token
-
-Méthode rapide :
-
-https://twitchtokengenerator.com/
-
-Connectez-vous avec le compte qui exécutera le shoutout.
-
-Scopes recommandés :
-
-```txt
-chat:read
-chat:edit
-moderator:manage:shoutouts
-moderator:read:shoutouts
-```
-
-Copiez :
-
-```txt
-Client ID
-Access Token
-```
-
-Puis mettez-les dans les arguments Streamer.bot :
-
-```txt
-godas_so_client_id
-godas_so_access_token
-```
-
-Le token peut être collé avec ou sans `oauth:`.
-
-## Récupérer les IDs Twitch
-
-Le `Broadcaster ID` et le `Moderator ID` ne sont pas des pseudos. Ce sont des IDs numériques Twitch.
-
-Méthode rapide :
-
-```txt
-https://api.ivr.fi/v2/twitch/user?login=PSEUDO
-```
-
-Exemple :
-
-```txt
-https://api.ivr.fi/v2/twitch/user?login=je_rush_en_godas
-```
-
-Dans la réponse JSON, récupérez :
-
-```json
-"id": "247012777"
-```
-
-## Configuration avec un seul compte Twitch
-
-Si vous utilisez votre compte streamer pour tout :
-
-```txt
-godas_so_broadcaster_id = ID du streamer
-godas_so_moderator_id = ID du streamer
-```
-
-Les deux valeurs sont identiques.
-
-## Configuration avec un compte bot
-
-Si vous utilisez un compte bot séparé :
-
-```txt
-godas_so_broadcaster_id = ID du streamer
-godas_so_moderator_id = ID du bot
-```
-
-Important : le compte bot doit être modérateur de la chaîne.
-
-## Important sur le Shoutout officiel Twitch
-
-Le script envoie toujours l'annonce personnalisée.
-
-En revanche, le shoutout officiel Twitch peut être refusé par Twitch si :
-
-```txt
-The broadcaster is not streaming live or does not have one or more viewers.
-```
-
-Cela signifie que la chaîne n'est pas en live ou n'a pas au moins 1 viewer.
-
-Dans ce cas, le script n'est pas cassé : Twitch bloque simplement le shoutout officiel hors live.
-
-## Erreurs courantes
-
-### 400 Bad Request
-
-Cause possible :
-
-```txt
-La chaîne n'est pas en live ou n'a pas au moins 1 viewer.
-```
-
-### 403 Forbidden
-
-Causes possibles :
-
-```txt
-- le token n'a pas les scopes nécessaires ;
-- le moderator_id ne correspond pas au compte du token ;
-- le compte bot n'est pas modérateur de la chaîne.
-```
-
-### Configuration manquante
-
-Vérifiez que les arguments existent avant `Execute Code` :
-
-```txt
+```text
 godas_so_client_id
 godas_so_access_token
 godas_so_broadcaster_id
 godas_so_moderator_id
 ```
 
-## Personnaliser les messages
+Recommended order :
 
-Dans `src/GodasShoutout.cs`, modifiez le tableau :
+```text
+Set Argument godas_so_client_id
+Set Argument godas_so_access_token
+Set Argument godas_so_broadcaster_id
+Set Argument godas_so_moderator_id
+Execute Code
+```
 
-```csharp
-string[] messages =
+---
+
+## 3. Import Script
+
+Import the included C# code into your Firebot action.
+
+---
+
+# Twitch Token
+
+Generate a token :
+
+```text
+https://twitchtokengenerator.com/
+```
+
+Required scopes :
+
+```text
+chat:read
+chat:edit
+moderator:manage:shoutouts
+moderator:read:shoutouts
+```
+
+Copy :
+
+```text
+Client ID
+Access Token
+```
+
+Configure :
+
+```text
+godas_so_client_id
+godas_so_access_token
+```
+
+---
+
+# Twitch IDs
+
+Retrieve Twitch IDs :
+
+```text
+https://api.ivr.fi/v2/twitch/user?login=PSEUDO
+```
+
+Example :
+
+```text
+https://api.ivr.fi/v2/twitch/user?login=je_rush_en_godas
+```
+
+Response :
+
+```json
 {
-    "...",
-    "..."
-};
+  "id":"247012777"
+}
 ```
 
-Variables déjà utilisées dans le code :
+The value returned is the Twitch ID.
 
-```txt
-displayName
-login
-title
-game
+---
+
+# Streamer Only Setup
+
+If you use your streamer account only :
+
+```text
+godas_so_broadcaster_id = Streamer ID
+godas_so_moderator_id = Streamer ID
 ```
 
-## Licence
+Example :
 
-MIT
+```text
+247012777
+247012777
+```
+
+Both values are identical.
+
+---
+
+# Streamer + Bot Setup
+
+If you use a dedicated bot account :
+
+```text
+godas_so_broadcaster_id = Streamer ID
+godas_so_moderator_id = Bot ID
+```
+
+Important :
+
+```text
+The bot account MUST be moderator.
+```
+
+Example :
+
+```text
+Streamer : je_rush_en_godas
+Bot      : je_bot_en_godas
+
+godas_so_broadcaster_id = Streamer ID
+godas_so_moderator_id = Bot ID
+```
+
+---
+
+# Official Twitch Shoutout Rules
+
+Twitch only allows official shoutouts when :
+
+```text
+✅ Stream is live
+✅ At least one viewer is present
+✅ Correct moderator permissions
+✅ Correct scopes
+✅ Correct moderator account
+```
+
+# Technologies
+
+```text
+- Firebot
+- C#
+- Twitch Helix API
+- Newtonsoft.Json
+```
+
+---
+
+# Credits
+
+### Development
+
+```text
+Godas DEV
+```
+
+<p align="center">
+  <strong>Godas Twitch Shoutout</strong>
+  <br>
+  Developed by <strong>Godas DEV</strong>
+  <br><br>
+  <img src="https://img.shields.io/badge/GODAS-DEV-00ff99?style=for-the-badge">
+</p>
