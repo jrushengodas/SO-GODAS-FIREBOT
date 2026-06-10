@@ -94,8 +94,8 @@ Announcement + Official Shoutout
 Examples :
 
 ```text
-!so jungpoo97
-!so @jungpoo97
+!so benjyyi
+!so @benjyyi
 ```
 
 ---
